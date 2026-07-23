@@ -1,61 +1,63 @@
 # 🛡️ Bangsaen Filter Engine
-**The $O(1)$ Ultra-Low Latency AI Bot & Scraper Firewall built natively for Cloudflare Workers.**
+**Ultra-Low Latency AI Bot & Scraper Firewall built natively for Cloudflare Workers.**
 
 [![Cloudflare Workers](https://img.shields.io/badge/Cloudflare-Workers-F38020?style=flat-square&logo=cloudflare&logoColor=white)](https://workers.cloudflare.com/)
-[![C++ WASM](https://img.shields.io/badge/Powered_by-C++_WASM-00599C?style=flat-square&logo=c%2B%2B&logoColor=white)]()
-[![Latency](https://img.shields.io/badge/Edge_Latency-0.000ms-brightgreen?style=flat-square)]()
+[![C++ WASM](https://img.shields.io/badge/Powered_by-C%2B%2B_WASM-00599C?style=flat-square&logo=c%2B%2B&logoColor=white)](https://webassembly.org/)
+[![Latency](https://img.shields.io/badge/Edge_Latency-%3C1ms-brightgreen?style=flat-square)]()
 [![Pricing](https://img.shields.io/badge/Pricing-Free_Tier_Available-blue?style=flat-square)]()
 
-**Bangsaen Filter** is a next-generation bot mitigation middleware designed exclusively for the Cloudflare Edge network. Powered by a custom C++ WebAssembly (WASM) kernel using Hilbert Space Projection algorithms, it detects and blocks malicious AI scrapers, automated bots, and Layer 7 threats in **true $O(1)$ time complexity**.
+**Bangsaen Filter** is a high-performance bot mitigation engine designed for the Cloudflare Edge network. Powered by a custom C++ WebAssembly (WASM) kernel using Hilbert Space Projection algorithms, it detects and blocks malicious AI scrapers, automated bots, and Layer 7 threats in **$O(1)$ time complexity**.
 
-No external API calls. No DNS routing delays. Just pure, bare-metal performance at the Edge.
-
----
-
-## ✨ Why Bangsaen Filter?
-
-- ⚡ **Zero Network Overhead:** Unlike traditional security vendors that route your traffic to external data centers, Bangsaen runs directly on your Cloudflare Edge node.
-- 🚀 **`0.000ms` Execution Time:** Our C++ WASM kernel evaluates 15-dimensional HTTP observables in sub-milliseconds. Your legitimate users won't feel a thing.
-- 🤖 **Advanced AI Scraper Defense:** Specifically trained to block modern AI crawlers, LLM data scrapers, and headless browser automation.
-- 🔌 **Plug & Play Middleware:** Deploys as a Reverse Proxy Worker in 1 click. No need to modify your origin server's code.
+Designed to execute at the Edge before traffic touches your origin infrastructure.
 
 ---
 
-## 🏗️ Architecture / How it Works
+## ✨ Key Features
+
+- ⚡ **Minimal Overhead:** Optimized C++ WASM compilation ensures near-instant evaluation at the Cloudflare Edge node.
+- 🚀 **Sub-Millisecond Execution:** Evaluates 15-dimensional HTTP observables in sub-milliseconds without slowing down valid requests.
+- 🤖 **AI Scraper Defense:** Engineered to mitigate unauthorized AI crawlers, LLM data harvesters, and headless browser automation.
+- 🔌 **Seamless Integration:** Easily drops into your existing Cloudflare Worker pipeline.
+
+---
+
+## 🏗️ Architecture
 
 ```text
 [ Visitor / AI Scraper ] 
           │
           ▼ (Cloudflare Edge)
   ╭──────────────────────────────────────────────╮
-  │ 🛡️ Bangsaen Filter (Worker)                 │
+  │ 🛡️ Bangsaen Filter (Worker)                  │
   │   ├─ 1. Authenticate API Key (KV)            │
   │   ├─ 2. Extract HTTP Observables             │
   │   └─ 3. Evaluate via C++ WASM Kernel         │
   ╰──────────────────────────────────────────────╯
-          │                              │
-    [ ALLOWED ]                      [ BLOCKED ]
-          │                              │
-          ▼                              ▼
- [ Your Origin Server ]        [ HTTP 403 Forbidden ]
+          │                               │
+    [ ALLOWED ]                       [ BLOCKED ]
+          │                               │
+          ▼                               ▼
+ [ Your Origin Server ]         [ HTTP 403 Forbidden ]
 
- ```
+```
+
 🚀 Quick Start Guide
-1. Claim Instant Free API Key
-Get your free 100,000 requests/month developer key instantly via cURL or at www.bangsaenai.com:
+1. Claim a Free Developer Key
+Get your free 100,000 requests/month developer key via cURL:
+
+Bash 
 
 ```
 curl -X POST [https://bangsaen-bot-killer.bangsaen-filter.workers.dev/api/claim-free](https://bangsaen-bot-killer.bangsaen-filter.workers.dev/api/claim-free)
 ```
 
 2. Integrate into Your Cloudflare Worker
-Add Bangsaen Filter as a lightweight security middleware before forwarding requests to your origin:
+Add Bangsaen Filter as a security evaluation step before proxying to your origin:
 
-TypeScript
 ```
 export default {
   async fetch(request: Request, env: any): Promise<Response> {
-    // 1. Pass incoming request to Bangsaen Edge Engine
+    // 1. Pass incoming request headers to Bangsaen Edge Engine
     const securityCheck = await fetch("[https://bangsaen-bot-killer.bangsaen-filter.workers.dev/](https://bangsaen-bot-killer.bangsaen-filter.workers.dev/)", {
       method: request.method,
       headers: {
@@ -64,7 +66,7 @@ export default {
       }
     });
 
-    // 2. Block malicious bot traffic immediately
+    // 2. Intercept blocked traffic immediately
     if (securityCheck.status === 403) {
       return securityCheck;
     }
@@ -75,34 +77,38 @@ export default {
 };
 
 ```
-3. Review Real-time Security Headers
-Every request processed by Bangsaen Filter returns transparent edge telemetry headers:
 
+3. Telemetry Headers
+Every processed request returns real-time edge performance metrics:
+
+HTTP
 
 ```
 HTTP/1.1 200 OK
 X-Bangsaen-Action: ALLOW
 X-Bangsaen-Score: 0.0000
-X-Bangsaen-Exec-Time: 0.000ms
+X-Bangsaen-Exec-Time: 0.24ms
 ```
 
-ง## 💰 Pricing
+🧪 Benchmark & Feedback
+We actively welcome community stress-testing! If you run load tests or benchmarking against our edge endpoint, please feel free to share your findings in the Issues tab.
 
-We believe in accessible security for everyone.
+
+## 💰 Pricing
 
 | Plan | Price | Monthly Quota | Features |
 | :--- | :--- | :--- | :--- |
-| **Developer (Free)** | **$0** / mo | **100,000** Reqs | Standard Edge Protection, Community Support |
-| **Pro** | **$19** / mo | **1,000,000** Reqs | Priority WASM Instance, Auto Block Enforce |
-| **Enterprise** | **Contact Us** | **Custom** | Unlimited Quota, Custom ML Thresholds |
+| **Developer** | **$0** / mo | **100,000** Reqs | Standard Edge Protection, Community Support |
+| **Pro** | **$19** / mo | **1,000,000** Reqs | Dedicated WASM Instance, Custom Rules |
+| **Enterprise** | **Custom** | **Custom** | Unlimited Quota, Custom ML Thresholds |
 
 ---
 
-## 📊 Error Codes & Troubleshooting
+## 📊 Status Codes
 
-* `401 Unauthorized` — Missing `x-bangsaen-key` header in request.
-* `403 Forbidden` — Traffic identified as a malicious bot/scraper and intercepted by the C++ engine.
-* `429 Too Many Requests` — Your monthly request quota has been exceeded. Please upgrade your plan.
+* `401 Unauthorized` — Missing or invalid `x-bangsaen-key` header.
+* `403 Forbidden` — Request flagged as automated threat / malicious scraper.
+* `429 Too Many Requests` — Monthly request quota limit reached.
 
 ---
 
@@ -110,7 +116,4 @@ We believe in accessible security for everyone.
 
 *Built with ❤️ by **BangsaenAI Team***
 
-"Using WordPress? Official Plugin is coming in a few days!"
-
 </div>
-
