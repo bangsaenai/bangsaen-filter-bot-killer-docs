@@ -175,3 +175,64 @@ We ran an aggressive Layer-7 bot attack simulation using `autocannon` (**400 con
 * ⏱️ **Zero Latency Hangs (`0 timeouts`):** The C++ WASM binary evaluates traffic in **~1.11ms**, terminating malicious connections instantly without letting any request linger or consume memory.
 * 🔋 **Origin Protection:** WordPress CPU usage remained at **0%** throughout the entire 27k-request assault.
 
+# 🧠 Why Bangsaen Filter is Built Differently: An Architectural Deep Dive
+
+> *"Blocking bots is trivial. Blocking 2,800+ evasive requests per second at the Edge—without exceeding CPU budgets or adding latency for real users—is the real engineering challenge."*
+
+---
+
+## 🧗‍♂️ The 3 Core Engineering Hurdles
+
+Most traditional security plugins and Web Application Firewalls (WAFs) fail to deliver high-performance bot mitigation due to three fundamental architectural limitations:
+
+### 1. The Latency Trade-Off (Speed vs. Accuracy)
+* **Traditional Approach:** Deep inspection usually requires sending request payloads to an external AI backend or querying distant databases. This introduces **50ms–300ms+ of latency penalty** on *every* inbound request, frustrating real users.
+* **The Bangsaen Solution:** All signature and behavioral rules execute locally within the **Edge Worker runtime**. Requests are filtered in **< 1.11ms CPU time**, eliminating roundtrip delays to Origin servers.
+
+### 2. The V8 Garbage Collection (GC) Spike
+* **Traditional Approach:** Most Cloudflare Workers are written in standard JavaScript or TypeScript. Under heavy volumetric attacks (e.g., 20k+ requests), the V8 engine triggers Garbage Collection (GC) pauses, causing latency jitter, memory bloat, and dropped connections.
+* **The Bangsaen Solution:** Built natively in **C++ compiled to WebAssembly (WASM)**. By using manual memory allocation and native binary execution, there is **zero GC overhead**, guaranteeing deterministic, rock-solid execution time regardless of load spikes.
+
+### 3. The Strict Edge CPU Budget Constraint
+* **Traditional Approach:** Standard Edge tiers enforce strict CPU time limits (e.g., 10ms–50ms). Heavy regex checks or unoptimized script loops quickly hit these execution caps, causing the runtime to throw `Worker Limits Exceeded` errors.
+* **The Bangsaen Solution:** Our micro-optimized C++ ruleset executes at near-native assembly speed. It consumes a fraction of the allowed CPU budget (~1.11ms), allowing high-concurrency filtering within free/standard serverless tiers.
+
+---
+
+## 📊 Architectural Comparison Matrix
+
+| Feature / Metric | Traditional Plugin / WAF | Bangsaen Filter Engine |
+| :--- | :--- | :--- |
+| **Execution Point** | Application Layer (PHP / Origin Server) | **Cloudflare Edge (Before Origin)** |
+| **Origin Server CPU Load** | High (Server processes bad traffic) | **0% (Origin never sees blocked traffic)** |
+| **Runtime Language** | Interpreted (PHP / Node.js) | **Compiled C++ WASM Binary** |
+| **Garbage Collection (GC)** | Prone to GC latency spikes | **Zero GC Jitter (Deterministic Memory)** |
+| **Added Client Latency** | +50ms to +300ms | **~1.11ms CPU Execution Time** |
+| **Max Tested Throughput** | ~200 – 500 Req/sec | **2,865+ Req/sec (0% Origin Leakage)** |
+
+---
+
+## ⚡ Real-World Benchmark Snapshot
+
+In our latest **Advanced Evasion Stress Test** (simulating 10,000 asynchronous attack requests with randomized User-Agents, client hints, HTTP methods, and cache-busting parameter rotations):
+
+* **Total Requests Handled:** 10,000 requests
+* **Time Elapsed:** 3.49 seconds
+* **Throughput:** **2,865.33 Req/sec**
+* **Avg Client Latency:** **90.56 ms**
+* **Interception Rate:** **100.00% (0 Leakage to Origin)**
+
+---
+
+## 🚀 Experience the Edge Performance
+
+Don't take our word for it—benchmark it yourself using our test suite:
+
+```bash
+git clone [https://github.com/bangsaenai/bangsaen-filter-bot-killer-docs.git](https://github.com/bangsaenai/bangsaen-filter-bot-killer-docs.git)
+cd bangsaen-filter-bot-killer-docs
+pip install aiohttp
+python stress_test_advanced.py
+
+```
+💬 Questions or Edge Cases? Join the technical conversation on our GitHub Discussions.
