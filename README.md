@@ -116,5 +116,5 @@ We actively welcome community stress-testing! If you run load tests or benchmark
 
 *Built with ❤️ by **BangsaenAI Team***
 
-Get a your Freekey at bangsaenai.com 
+Get your key at bangsaenai.com 
 </div>
