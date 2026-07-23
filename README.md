@@ -157,3 +157,20 @@ Origin Metrics: Verify that origin CPU load remains flat at 0% during incoming b
 💬 Got an interesting benchmark result, bottleneck finding, or edge-case bypass? Open an Issue or share your flamegraph in Discussions! 
 
 Send us a report at drtanet@bangsaenai.com 
+
+--- 
+
+## 📊 Live Benchmark & Stress Test Results
+
+We ran an aggressive layer-7 bot attack simulation using `autocannon` (400 concurrent connections for 30s) to stress-test the C++ WASM edge engine.
+
+### 📈 Test Execution Log (`autocannon`)
+```text
+Running 30s test @ [https://bangsaen-bot-killer.bangsaen-filter.workers.dev/](https://bangsaen-bot-killer.bangsaen-filter.workers.dev/)
+400 connections
+
+0 2xx responses, 18,301 non-2xx responses
+26k requests in 31.72s, 40.4 MB read
+985 errors (0 timeouts)
+```
+
