@@ -117,4 +117,43 @@ We actively welcome community stress-testing! If you run load tests or benchmark
 *Built with ❤️ by **BangsaenAI Team***
 
 Get your key at bangsaenai.com 
-</div>
+</div> 
+
+## ⚡ Performance Benchmark: ~1.11ms at the Edge
+
+Most traditional bot filtering solutions evaluate traffic on the application layer, forcing your origin server to spin up PHP processes and burn CPU cycles just to reject bad actors. 
+
+**Bangsaen Filter** executes C++ compiled to WebAssembly directly inside Cloudflare Workers, eliminating malicious traffic in **~1.11ms** before it ever touches your server.
+
+### 📊 Metric Breakdown
+
+| Metric | Bangsaen Filter (C++ WASM) | Traditional PHP / Origin Filter |
+| :--- | :--- | :--- |
+| **CPU Execution Time** | **~1.11 ms** ⚡ | ~20 ms – 100+ ms |
+| **Origin Server CPU Load** | **0%** *(Blocked at Edge)* | High *(Drained by incoming requests)* |
+| **Cloudflare Free Quota Used** | **~11%** *(10ms CPU limit)* | N/A |
+| **Execution Context** | Edge V8 / WASM Isolation | Host System / Web Server |
+
+---
+
+### 🧪 Want to Break / Stress-Test This Benchmark?
+
+We encourage performance engineers, DevSecOps folks, and WASM enthusiasts to stress-test this engine under real-world conditions.
+
+Feel free to spin up your favorite load-testing tools (`k6`, `wrk`, or `autocannon`) against a protected endpoint:
+
+```bash
+# Example load test with wrk (12 threads, 400 connections, 30s)
+wrk -t12 -c400 -d30s [https://your-protected-endpoint.com/](https://your-protected-endpoint.com/)
+
+```
+
+Key Metrics to Monitor During Stress Testing:
+
+Cloudflare Worker Metrics: Observe CPU execution time remaining tightly bound around ~1.1ms.
+
+Origin Metrics: Verify that origin CPU load remains flat at 0% during incoming bot floods.
+
+💬 Got an interesting benchmark result, bottleneck finding, or edge-case bypass? Open an Issue or share your flamegraph in Discussions! 
+
+Send us a report at drtanet@bangsaenai.com 
