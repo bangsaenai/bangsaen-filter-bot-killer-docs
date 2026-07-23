@@ -144,7 +144,7 @@ Feel free to spin up your favorite load-testing tools (`k6`, `wrk`, or `autocann
 
 ```bash
 # Example load test with wrk (12 threads, 400 connections, 30s)
-wrk -t12 -c400 -d30s [https://your-protected-endpoint.com/](https://your-protected-endpoint.com/)
+wrk -t12 -c400 -d30s [https://bangsaen-bot-killer.bangsaen-filter.workers.dev/](https://bangsaen-bot-killer.bangsaen-filter.workers.dev/)
 
 ```
 
