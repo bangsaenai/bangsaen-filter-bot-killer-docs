@@ -110,5 +110,7 @@ We believe in accessible security for everyone.
 
 *Built with ❤️ by **BangsaenAI Team***
 
+"Using WordPress? Official Plugin is coming in a few days!"
+
 </div>
 
