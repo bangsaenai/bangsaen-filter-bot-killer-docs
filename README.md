@@ -235,4 +235,43 @@ pip install aiohttp
 python stress_test_advanced.py
 
 ```
-💬 Questions or Edge Cases? Join the technical conversation on our GitHub Discussions.
+💬 Questions or Edge Cases? Join the technical conversation on our GitHub Discussions. 
+
+
+## 🚀 Real-World Edge Analytics: $398\ \mu\text{s}$ P90 CPU Execution Time
+
+During a real-world surge reaching **64.13k requests** (43.88k Worker Invocations), the Bangsaen C++ WASM Engine maintained a **P90 CPU Execution Time of just $398\ \mu\text{s}$ ($0.398\text{ ms}$)** with **0 errors** and **0% origin leakage**.
+
+![Bangsaen Filter Cloudflare Analytics](bf.PNG)
+
+### 📊 Global Performance Comparison
+
+| Architecture Layer | Execution Time / CPU Overhead | System Characteristics |
+| :--- | :--- | :--- |
+| **WordPress PHP Origin** | $100\text{ ms} - 500\text{ ms}$ | High memory & DB overhead. Degrades rapidly under traffic spikes. |
+| **Traditional Cloud WAF** | $10\text{ ms} - 50\text{ ms}$ | Network routing latency & expensive tier pricing. |
+| **Standard JS/TS Edge Worker** | $2\text{ ms} - 5\text{ ms}$ | V8 Garbage Collection (GC) spikes & Cold Start delays under load. |
+| **Bangsaen C++ WASM Engine** | **$0.398\text{ ms}$** | **Deterministic, near-native execution. Zero GC, zero origin load.** |
+
+---
+
+## 🛡️ The 3-Layer Edge Defense Architecture
+
+Achieving Layer 1 execution in sub-millisecond time ($<0.4\text{ ms}$) leaves a massive CPU budget headroom within Edge Provider Limits (10ms – 50ms). This allows us to stack multi-layered intelligence directly at the Edge before any request reaches your origin infrastructure:
+
+* **Layer 1: Core Bot Identification (Active):** High-throughput C++ WASM filtering at $398\ \mu\text{s}$. Drops $>90\%$ of automated threats instantly.
+* **Layer 2: Intent & Path Filtering (In Progress):** WASM-based State Machine scanning request sequences to detect direct API bypassing and abnormal UI flows.
+* **Layer 3: Dynamic LLM & Micro-ML Payload Defense (Planned):** Lightweight Edge-ML execution to evaluate payload intent, neutralizing Prompt Injection and AI Scrapers dynamically.
+
+> 💡 **The Architectural Shift:** Modern security is not about building a larger origin server to absorb malicious traffic—it is about moving the **Decision Boundary** to the absolute Edge so your origin server executes compute cycles *only* on clean, pre-verified payloads.
+
+---
+
+## ⚡ Test Layer 1 & Join the Discussion
+
+We invite DevOps engineers, DevSecOps practitioners, and full-stack developers to stress-test Layer 1 on your own environment using the included scripts (`stress_test_advanced.py` / `autocannon`).
+
+* **How fast is your current WAF or security stack under heavy concurrency?**
+* **What are your thoughts on shifting threat-evaluation logic entirely to C++ WASM at the Edge?**
+
+💬 **[Open a Discussion / Share Your Benchmark Results]** — Let's discuss the future of zero-overhead Edge security!
