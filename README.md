@@ -276,8 +276,9 @@ We invite DevOps engineers, DevSecOps practitioners, and full-stack developers t
 
 💬 **[Open a Discussion / Share Your Benchmark Results]** — Let's discuss the future of zero-overhead Edge security!
 
+---
 
-# 🛡️ Bangsaen Filter Experiment on Google Cloud 
+# 🛡️ Bangsaen Filter - Real Experiment on Google Cloud [studio.bangsaenai.com] 
 
 > **Nuke Bad Bots at the Edge. Save Thousands on Cloud Infrastructure.**  
 > High-performance C++/WASM Layer-7 Security Engine for WordPress & WooCommerce.
