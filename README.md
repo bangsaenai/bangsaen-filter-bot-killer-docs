@@ -275,3 +275,68 @@ We invite DevOps engineers, DevSecOps practitioners, and full-stack developers t
 * **What are your thoughts on shifting threat-evaluation logic entirely to C++ WASM at the Edge?**
 
 💬 **[Open a Discussion / Share Your Benchmark Results]** — Let's discuss the future of zero-overhead Edge security!
+
+
+# 🛡️ Bangsaen Filter (Bot Killer v1.0.0)
+
+> **Nuke Bad Bots at the Edge. Save Thousands on Cloud Infrastructure.**  
+> High-performance C++/WASM Layer-7 Security Engine for WordPress & WooCommerce.
+
+---
+
+[![WordPress Plugin Status](https://img.shields.io/badge/WordPress.org-Under%20Review-orange?style=for-the-badge&logo=wordpress)](https://studio.bangsaenai.com/shop/)
+[![Release](https://img.shields.io/badge/Release-v1.0.0-blue?style=for-the-badge&logo=github)](https://github.com/bangsaenai/bangsaen-filter-bot-killer-docs/releases/tag/v1.0.0)
+[![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](#)
+
+---
+
+## 🚀 The Experiment is Complete. The Proof is Live.
+
+We successfully built, deployed, and stress-tested **Bangsaen Filter v1.0.0** on an extreme constraint budget: a free **GCP e2-micro (1 vCPU, 1GB RAM)** instance running WordPress, WooCommerce, and **Stripe Live Payments**.
+
+Instead of throwing money at expensive cloud upgrades to survive bot attacks, we shifted Layer-7 security inspection to the **Cloudflare Global Edge** using compiled **C++/WebAssembly (WASM)**.
+
+### 🛍️ Tested on a Real Live E-Commerce Store
+This isn't just a synthetic simulation. The architecture was battle-tested on a fully functional WooCommerce store integrated with **Stripe Express Checkout (Apple Pay / Google Pay)**.
+
+* 🌐 **Live Test Shop:** [https://studio.bangsaenai.com/shop/](https://studio.bangsaenai.com/shop/)
+* 📦 **Download Plugin (v1.0.0):** [GitHub Release v1.0.0](https://github.com/bangsaenai/bangsaen-filter-bot-killer-docs/releases/tag/v1.0.0)
+* 🔑 **Free API Key:** Click **"CLAIM FREE API KEY"** on the top header bar of our platform to activate instantly.
+
+---
+
+## 📊 Empirical Benchmark Results
+
+Under a simultaneous stress test of **20 concurrent threads (100 total requests)**, Bangsaen Filter completely shielded the low-spec origin VM:
+
+| Metric | Round 1: Attacker Traffic (`sqlmap`) | Round 2: Legitimate Buyers (Chrome + Cache) |
+| :--- | :--- | :--- |
+| **Inspection Point** | **Cloudflare Edge (C++/WASM)** | **Origin (GCP e2-micro + FastCGI)** |
+| **Status Code** | `HTTP 403 Forbidden` (100%) | `HTTP 200 OK` (100%) |
+| **Throughput (RPS)** | **88.36 req/sec** | **30.75 req/sec** |
+| **Avg Response Latency** | **213.43 ms** | **603.44 ms** |
+| **Edge CPU Time** | **1.3 ms** (Quota limit: 10ms) | N/A |
+| **Origin CPU Load** | **0.00%** (Zero PHP overhead) | Normal Processing |
+| **Error / Timeout Rate** | **0.00%** | **0.00%** |
+
+> 💡 **Takeaway:** Malicious scrapers were destroyed at the Edge within **1.3ms of CPU execution time**. The GCP e2-micro server did not execute a single line of PHP or MySQL query for blocked attackers.
+
+---
+
+## 🎁 Try It Free Today!
+
+You don't need to wait for third-party validation—we've already done the heavy lifting. You can download and run Bangsaen Filter on your WordPress site **100% free right now**.
+
+1. Download the zip file from [Releases](https://github.com/bangsaenai/bangsaen-filter-bot-killer-docs/releases/tag/v1.0.0).
+2. Upload to your WordPress Admin (`Plugins -> Add New -> Upload Plugin`).
+3. Scroll up on our platform, click **CLAIM FREE API KEY**, enter it in the plugin settings, and activate protection in seconds!
+
+---
+
+## ⏳ What's Next: WordPress.org Approval & Managed Pro Plan ($19/mo)
+
+Our team has officially submitted **Bangsaen Filter v1.0.0** to the official **WordPress.org Plugin Directory** and it is currently undergoing code review by the WP Plugin Team.
+
+### 💰 Why Spend $100s Scaling Hardware When You Can Pay $19/month?
+
+When WordPress.org approval goes live, we will roll out our **Managed Pro Analytics & Threat Intelligence Dashboard for $19/month**:
