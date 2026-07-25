@@ -277,16 +277,10 @@ We invite DevOps engineers, DevSecOps practitioners, and full-stack developers t
 💬 **[Open a Discussion / Share Your Benchmark Results]** — Let's discuss the future of zero-overhead Edge security!
 
 
-# 🛡️ Bangsaen Filter (Bot Killer v1.0.0)
+# 🛡️ Bangsaen Filter Experiment on Google Cloud 
 
 > **Nuke Bad Bots at the Edge. Save Thousands on Cloud Infrastructure.**  
 > High-performance C++/WASM Layer-7 Security Engine for WordPress & WooCommerce.
-
----
-
-[![WordPress Plugin Status](https://img.shields.io/badge/WordPress.org-Under%20Review-orange?style=for-the-badge&logo=wordpress)](https://studio.bangsaenai.com/shop/)
-[![Release](https://img.shields.io/badge/Release-v1.0.0-blue?style=for-the-badge&logo=github)](https://github.com/bangsaenai/bangsaen-filter-bot-killer-docs/releases/tag/v1.0.0)
-[![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](#)
 
 ---
 
@@ -340,3 +334,36 @@ Our team has officially submitted **Bangsaen Filter v1.0.0** to the official **W
 ### 💰 Why Spend $100s Scaling Hardware When You Can Pay $19/month?
 
 When WordPress.org approval goes live, we will roll out our **Managed Pro Analytics & Threat Intelligence Dashboard for $19/month**:
+
+
+[ Traditional Method ]
+
+Bad Bot Traffic ──► Expensive Upgraded Cloud Server ($100-$300/mo) ──► High Bills
+
+[ Bangsaen Filter Method ]
+
+Bad Bot Traffic ──► Edge C++/WASM Block ($19/mo) ──► Tiny $0-$10 Origin Server
+
+#### What Pro Users ($19/mo) Get:
+* 📉 **Proven Cost Savings Dashboard:** Real-time visibility into how many server CPU cycles and cloud dollars Bangsaen Filter saved your business.
+* 🛡️ **Managed Edge WASM Rules:** Zero-maintenance, auto-updated Layer-7 threat signatures (Anti-Scraper, Anti-Scalper, Vulnerability Scanner Mitigation).
+* 📊 **Deep Traffic Analytics:** Live breakdown of blocked vs. passed traffic, execution latencies, and threat classification.
+* ⚡ **ROI Guarantee:** Stop paying your hosting provider for server upgrades just to fight Layer-7 bot spikes. Pay $19/mo and keep your origin infrastructure lean, fast, and secure.
+
+---
+
+## 🏗️ Architecture Stack
+
+* **Edge Engine:** Cloudflare Workers + WebAssembly (C++ Kernel)
+* **Origin Server:** WordOps (NGINX + FastCGI Cache + PHP 8.2 + MariaDB)
+* **Hosting:** GCP e2-micro (1 vCPU, 1GB RAM)
+* **E-Commerce & Payment:** WordPress + WooCommerce + Stripe Live Integration
+
+---
+
+## 🤝 Community & Support
+
+* **Documentation:** [GitHub Docs Repo](https://github.com/bangsaenai/bangsaen-filter-bot-killer-docs)
+* **Live Sandbox:** [https://studio.bangsaenai.com/shop/](https://studio.bangsaenai.com/shop/)
+
+*Crafted with C++ and WASM for high-concurrency web security.*
