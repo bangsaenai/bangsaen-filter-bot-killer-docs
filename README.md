@@ -418,9 +418,11 @@ By destroying bad bot requests at the Edge before they ever touch your web serve
 
 **Yes, absolutely.** The request quota counts **Total Edge Invocations**, which includes both legitimate user traffic and blocked malicious traffic. 
 
+```
 Incoming Traffic (1,000,000 Total Reqs)
 ├── 80% Bad Bots / Scrapers  ──► [ C++/WASM Edge Kernel ] ──► Instant 403 (Blocked at 1.3ms)
 └── 20% Legitimate Buyers    ──► [ C++/WASM Edge Kernel ] ──► Passed to Origin (GCP e2-micro) 
+```
 
 #### Why are blocked bot requests counted?
 Every incoming HTTP request hits the Cloudflare Global Edge before reaching your web server. The **Bangsaen Filter C++/WASM Engine** executes on every single request (~1.3ms CPU execution time) to perform microsecond payload inspection, evaluate Layer-7 threat signatures, and enforce security policies. 
