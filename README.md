@@ -8,7 +8,11 @@
 
 **Bangsaen Filter** is a high-performance bot mitigation engine designed for the Cloudflare Edge network. Powered by a custom C++ WebAssembly (WASM) kernel using Hilbert Space Projection algorithms, it detects and blocks malicious AI scrapers, automated bots, and Layer 7 threats in **$O(1)$ time complexity**.
 
+
 Designed to execute at the Edge before traffic touches your origin infrastructure.
+
+👉 [Get your Free API Key (100k req/mo) at studio.bangsaenai.com](https://studio.bangsaenai.com)
+If Bangsaen Filter helps secure your server, please consider giving us a ⭐ Star to support the project!
 
 ---
 
