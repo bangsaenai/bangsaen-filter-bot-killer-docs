@@ -12,7 +12,7 @@
 Designed to execute at the Edge before traffic touches your origin infrastructure.
 
 👉 [Get your Free API Key (100k req/mo) at studio.bangsaenai.com](https://studio.bangsaenai.com)
-If Bangsaen Filter helps secure your server, please consider giving us a ⭐ Star to support the project!
+## If Bangsaen Filter helps secure your server, please consider giving us a ⭐ Star to support the project!
 
 ---
 
