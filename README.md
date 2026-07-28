@@ -1,3 +1,15 @@
+> 📢 **IMPORTANT NOTICE: SCHEDULED ENGINE RE-CALIBRATION & WP.ORG APPROVED**
+> 
+> 🟢 **Current Status:** The Bangsaen Filter Layer 7 Edge Engine is currently operating in **Safe Pass-Through Mode**. All incoming traffic is being safely allowed without interception.
+> 
+> 🚀 **What's Happening?**
+> - **WordPress.org Approved!** Our plugin review has been successfully completed by the WordPress.org Plugin Team. Official SVN deployment is underway.
+> - **Engine Upgrade:** We are re-calibrating our C++ WASM Koopman Operator Dynamical System kernel for pure, zero-false-positive threat scoring.
+> 
+> 💡 **For Early Access / Beta Users:** 
+> Plugin versions `v1.2.1` will automatically pass traffic smoothly during this period. No manual action is required on your WordPress sites.
+
+
 # 🛡️ Bangsaen Filter Engine
 **Ultra-Low Latency AI Bot & Scraper Firewall built natively for Cloudflare Workers.**
 
